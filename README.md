@@ -8,15 +8,15 @@ Add the required fields to the **config file** before running.
 ### Without Docker
 ```
 go mod tidy
-go build
+make build
 ./usdt-indexer --config-file ./config.json
 ```
 
 ### With Docker  
-Ensure that docker is running.  
+Ensure that docker is running and port 2112 is available.  
 ```
-docker build -t contract-indexer .
-docker run -d --name contract-indexer -p 2112:2112 contract-indexer
+make build_docker
+make run_docker
 ```
 
 Note: This is an Interview assignment. Not ready for production.  
