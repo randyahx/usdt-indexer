@@ -7,8 +7,7 @@ Add the required fields to **./config.json** before running.
 
 ### Without Docker
 ```
-go mod tidy
-make build
+make build  
 ./usdt-indexer --config-file ./config.json
 ```
 
