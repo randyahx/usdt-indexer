@@ -3,7 +3,7 @@
 This is an indexer written in Golang to subscribe to USDT Transfer events on the Ethereum Mainnet. The data is displayed on Grafana according to Openmetrics standards.  
 
 ## Running the program locally 
-Add the required fields to the **config file** before running.  
+Add the required fields to **./config.json** before running.  
 
 ### Without Docker
 ```
