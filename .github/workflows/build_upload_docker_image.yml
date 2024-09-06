@@ -1,6 +1,5 @@
-name: Build and Push Docker Image to GHCR
+name: Build and Push Docker Image
 
-# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
@@ -11,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
+      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Docker Buildx (for cross-platform builds, optional)
+      # Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -27,11 +26,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build and push the Docker image to GHCR
+      # Recreate the config.json file from the secret
+      - name: Create config.json
+        run: |
+          echo "${{ secrets.CONFIG_JSON }}" > ./config/config.json
+
+      # Build and push the Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/usdt-indexer:latest,ghcr.io/${{ github.repository_owner }}/usdt-indexer:${{ github.sha }}

@@ -1,0 +1,11 @@
+{
+  "node_config": {
+    "ethereum_node_url": ""
+  },
+  "contract_config": {
+    "usdt_contract_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+  },
+  "metrics_config": {
+    "port": 2112
+  }
+}
