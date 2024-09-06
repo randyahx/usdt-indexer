@@ -110,5 +110,5 @@ func (indexerClient *IndexerClient) processTransferEvent(contractABI abi.ABI, ev
 	indexerClient.metricService.IncUSDTTransferredAmountTotal(convertedValueInUSD)
 
 	// Log the transfer event
-	fmt.Printf("Transfer of %.6f tokens from %s to %s \n\n", convertedValueInUSD, from.Hex(), to.Hex())
+	fmt.Printf("Transfer of %.2f tokens from %s to %s \n\n", convertedValueInUSD, from.Hex(), to.Hex())
 }

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"os"
 )
 
 func main() {
@@ -14,8 +15,13 @@ func main() {
 	initFlags()
 
 	// Initialize config from path provided
-	configFilePath := viper.GetString(config.FlagConfigPath)
-	if configFilePath == "" {
+	var configFilePath string
+	switch {
+	case viper.GetString(config.FlagConfigPath) != "":
+		configFilePath = viper.GetString(config.FlagConfigPath)
+	case os.Getenv(config.ENVConfigPath) != "":
+		configFilePath = os.Getenv(config.ENVConfigPath)
+	default:
 		configFilePath = config.DefaultConfigPath
 	}
 	cfg, err := config.ParseConfigFromFile(configFilePath)
@@ -42,5 +48,5 @@ func initFlags() {
 }
 
 func printUsage() {
-	fmt.Print("usage: ./contract-indexer --config-path configFile\n")
+	fmt.Print("usage: ./usdt-indexer --config-path configFile\n")
 }

@@ -5,5 +5,6 @@ const (
 	FlagConfigPath = "config-path"
 
 	// Constants
+	ENVConfigPath     = "CONFIG_FILE_PATH"
 	DefaultConfigPath = "./config.json"
 )
